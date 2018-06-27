@@ -37,12 +37,15 @@ class Deck {
     }
 
     checkFlush(hand){
-
-      for (var y = 0; y < 4; y++){
-        if(hand[y].substring(hand[y].length - 1) != hand[y+1].substring(hand[y].length - 1)){
+      
+      
+      for (var y = 0; y < 5; y++){
+        
+        if(hand[0].substring(hand[0].length - 1) != hand[y].substring(hand[y].length - 1)){
           return false;
         }
       }
+      
       return true;
     }
 
@@ -72,7 +75,7 @@ class Deck {
 
   checkStraight(hand){
 
-    var values = ['2 ', '3 ', '4 ', '5 ', '6 ', '7 ', '8 ', '9 ', '10 ', 'J ', 'Q ', 'K ', 'A '];
+    var values = ['2 ', '3 ', '4 ', '5 ', '6 ', '7 ', '8 ', '9 ', '10', 'J ', 'Q ', 'K ','A '];
     var numbers = [];
     for (var y = 0; y < hand.length ; y++){
       numbers.push(hand[y].slice(0,2))  
@@ -81,10 +84,9 @@ class Deck {
 
     var results = [];
     
-    var sortedhand = numbers.slice().sort(function(a,b){return a-b});
-    let c0 = values.indexOf(sortedhand[0])
-    let c4 = values.indexOf(sortedhand[4])
+    var sortedhand = numbers.slice().sort((a,b) => values.indexOf(a) - values.indexOf(b));
     for (var i = 0; i < sortedhand.length -1; i++ ){
+
         if (sortedhand[i+1] == sortedhand[i]){
           results.push(sortedhand[i]);
         }
@@ -92,24 +94,28 @@ class Deck {
         return false;
         }
        }
-       if(sortedhand[0] == 'A ' && sortedhand[4] == '5 ' ){
+       let c0 = values.indexOf(sortedhand[0])
+       let c4 = values.indexOf(sortedhand[4])
+       if(sortedhand[4] == 'A ' && sortedhand[3] == '5 ' ){
+        
+        
          return true;
-       }else if( (c0-c4) == 5){
+       }if( c4-c0 == 4){
+        
          return true
        }
-
-       //console.log(sortedhand)
-     
-        
-        
-        
-       
        
 
         
-        //return (c0-c4) == 4;
+    
         
-        //console.log(sortedhand);
+       
+       
+        
+        
+        return (c0-c4) == 4;
+        
+        
         //return true;
         
       }
