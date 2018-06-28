@@ -1,9 +1,9 @@
 class Deck {
    
   constructor() {
-    this.deck = [];
+    this.deck = ['7 ❤', '6 ♣', '5 ❤', '4 ♣', '3 ♦'];
 
-    const suits = ['\u2660', '\u2666', '\u2663', '\u2764'];
+    /*const suits = ['\u2660', '\u2666', '\u2663', '\u2764'];
     const values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
 
 
@@ -14,7 +14,7 @@ class Deck {
        
         this.deck.push(`${values[value]} ${suits[suit]}`);
       }
-    }
+    }*/
   }
 
   
@@ -58,10 +58,10 @@ class Deck {
 
     var results = [];
     
-    var sortedhand = numbers.slice().sort();
-      for (var i = 0; i < sortedhand.length -1; i++ ){
-          if (sortedhand[i+1] == sortedhand[i] && sortedhand[i+1] != sortedhand[i+2]){
-              results.push(sortedhand[i]);
+    var sortedHand = numbers.slice().sort();
+      for (var i = 0; i < sortedHand.length -1; i++ ){
+          if (sortedHand[i+1] == sortedHand[i] && sortedHand[i+1] != sortedHand[i+2]){
+              results.push(sortedHand[i]);
             }
 
         }
@@ -77,29 +77,40 @@ class Deck {
 
     var values = ['2 ', '3 ', '4 ', '5 ', '6 ', '7 ', '8 ', '9 ', '10', 'J ', 'Q ', 'K ','A '];
     var numbers = [];
-
+    var results = [];
       for (var y = 0; y < hand.length ; y++){
           numbers.push(hand[y].slice(0,2)); 
         }
+        
+        
 
 
     
     
-    var sortedhand = numbers.slice().sort((a,b) => values.indexOf(a) - values.indexOf(b));
-    let c0 = values.indexOf(sortedhand[0]);
-    let c4 = values.indexOf(sortedhand[4]);
+    var sortedHand = numbers.slice().sort((a,b) => values.indexOf(a) - values.indexOf(b));
+    let c0 = values.indexOf(sortedHand[0]);
+    let c4 = values.indexOf(sortedHand[4]);
 
-      if(sortedhand[4] == 'A ' && sortedhand[3] == '5 ' ){
+    for (var i = 0; i < sortedHand.length -1; i++ ){
+      if (sortedHand[i+1] == sortedHand[i]){
+            results.push(sortedHand[i]);
+              }
+      if(results.length != 0){
+            return false;
+              }
+    }
+      if(sortedHand[4] == 'A ' && sortedHand[3] == '5 ' ){
         
           return true;
 
         }
 
       if( c4-c0 == 4){
-        
+        console.log(sortedHand);
          return true;
 
           }
+         
         
   }
 
@@ -132,7 +143,7 @@ const shuffled = new Deck();
 //shuffled.deal()
 
 
-  for (i=0; i <= 2; i++){
+  for (i=0; i <= 0; i++){
     cards = shuffled.deck.splice(0,5);
     console.log(cards);
     shuffled.evaluate(cards);
