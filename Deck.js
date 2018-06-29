@@ -101,7 +101,6 @@ class Deck {
     }
 
     if (c4 - c0 == 4) {
-      console.log(sortedHand);
       return true;
 
     }
